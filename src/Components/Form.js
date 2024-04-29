@@ -1,42 +1,90 @@
 import React, { useState } from "react";
-// import Transaction from "./Transaction";
 
-function Form() {
-  const [date, setDate] = useState("")
-  const [description, setDescription] = useState("")
-  const [category, setCategory] = useState("")
-  const [amount, setAmount] = useState("")
-  function handleSubmit(e) {
-    fetch("http://localhost:3001/transactions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        date: date,
-        description: description,
-        category: category,
-        amount: amount,
-      }),
+function Form({ transactions, setTransactions }) {
+    const [formEntry, setFormEntry] = useState({
+        date: "",
+        description: "",
+        category: "",
+        amount: ""
     });
-     alert("added successfully")
-  }
-  return (
-    <div className="ui segment">
-      <form onSubmit={handleSubmit} className="ui form">
-        <div className="inline fields">
-          <input value={date} onChange={(e) => setDate(e.target.value)} type="date" name="date" />
-          <input value={description} onChange={(e) => setDescription(e.target.value)} type="text" name="description" placeholder="Description" />
-          <input value={category} onChange={(e) => setCategory(e.target.value)} type="text" name="category" placeholder="Category" />
-          <input value={amount} onChange={(e) => setAmount(e.target.value)} type="number" name="amount" placeholder="Amount" step="0.01" />
-        </div>
-        <button className="ui button" type="submit">
-          Add Transaction
-        </button>
-      </form>
-    </div>
-    
-  );
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        setTransactions([...transactions, formEntry]);
+        
+        setFormEntry({
+            date: "",
+            description: "",
+            category: "",
+            amount: ""
+        });
+    }
+
+    function handleChange(event) {
+        const { name, value } = event.target;
+        setFormEntry(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    }
+
+    return (
+        <>
+            <form onSubmit={handleSubmit}>
+                <div className="row border m-4 p-4">
+                    <div className="col-3 mx-auto">
+                        <input
+                            className="form-control col-2"
+                            onChange={handleChange}
+                            name="date"
+                            type="date"
+                            value={formEntry.date}
+                            placeholder="Date"
+                            aria-label=".form-control-sm example"
+                        />
+                    </div>
+                    <div className="col-3 mx-auto">
+                        <input
+                            className="form-control col-2"
+                            onChange={handleChange}
+                            name="description"
+                            type="text"
+                            value={formEntry.description}
+                            placeholder="Description"
+                            aria-label=".form-control-sm example"
+                        />
+                    </div>
+                    <div className="col-3 mx-auto">
+                        <input
+                            className="form-control col-2"
+                            onChange={handleChange}
+                            name="category"
+                            type="text"
+                            value={formEntry.category}
+                            placeholder="Category"
+                            aria-label=".form-control-sm example"
+                        />
+                    </div>
+                    <div className="col-3 mx-auto">
+                        <input
+                            className="form-control col-2"
+                            onChange={handleChange}
+                            name="amount"
+                            type="number"
+                            value={formEntry.amount}
+                            placeholder="Amount"
+                            aria-label=".form-control-sm example"
+                        />
+                    </div>
+                    <div className="col-3 mx-auto m-2 p-2">
+                        <button type="submit" className="mx-auto btn btn-warning">
+                            Add Transaction
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </>
+    );
 }
 
 export default Form;
