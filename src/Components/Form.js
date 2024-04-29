@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Transaction from "./Transaction";
+// import Transaction from "./Transaction";
 
 function Form() {
   const [date, setDate] = useState("")
@@ -35,6 +35,7 @@ function Form() {
         </button>
       </form>
     </div>
+    
   );
 }
 

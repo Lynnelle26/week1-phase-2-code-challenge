@@ -5,7 +5,6 @@ import Search from "./Search";
 import Form from "./Form";
 
 
-
 function Container() {
   const [transaction, setTransaction] = useState([])
   const [query, setQuery] = useState("")
@@ -22,8 +21,7 @@ function Container() {
       <Search handleSearch={handleSearch} />
       <Form />
       <TableList transactions={transaction} />
-   
-     
+
     </div>
   );
 }

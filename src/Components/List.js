@@ -1,6 +1,5 @@
 
 
-
 const transactions = [
     {
       id: 1,
@@ -31,6 +30,27 @@ const transactions = [
       amount: 365
     }
   ]
+  const TransactionTable = () => {
+    return (
+      <div>
+        <table>
+          <tbody>
+           {transactions.map(transactions => (
+              <tr key={transactions.id}>
+                <td>{transactions.id}</td>
+                <td>{transactions.posted_at}</td>
+                <td>{transactions.description}</td>
+                <td>{transactions.category}</td>
+                <td>{transactions.amount}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    );
+  };
 
 
-  export {transactions}
+  
+  export default TransactionTable;
+

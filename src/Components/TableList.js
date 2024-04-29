@@ -1,14 +1,12 @@
 
 import React from "react";
-import Transaction from "./Transaction";
+import TransactionTable from "./List";
 
 function TableList({transactions}) {
-  const list = transactions.map((item)=>{
-    return <Transaction key={item.id} date={item.date} description={item.description} category={item.category} amount={item.amount} />;
-  })
+
   return (
     <table className="ui celled striped padded table">
-      <tbody>
+      <thead>
         <tr>
           <th>
             <h3 className="ui center aligned header">Date</h3>
@@ -23,9 +21,12 @@ function TableList({transactions}) {
             <h3 className="ui center aligned header">Amount</h3>
           </th>
         </tr>
+        </thead>
+        <tbody>
         {/* render a list of <Transaction> components here */}
-        {list}
 
+        <TransactionTable transaction={transactions}/>;
+        
       </tbody>
     </table>
   );
