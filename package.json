@@ -1,7 +1,7 @@
 {
   "name": "bank-of-flatiron",
   "version": "0.1.0",
-  "homepage": "https://Lynnelle26.github.io/week1-phase2-code-challenge",
+  "homepage": "https://Lynnelle26.github.io/week1-pha2-code-challenge",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
